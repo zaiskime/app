@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Saulutė žaidžia lietuviškai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Reusable inline sun mascot (saulutė) — the page's signature motif -->
+<template id="tpl-sun-mascot">
+  <svg viewBox="0 0 100 100" class="sun-mascot" role="img" aria-label="Saulutės maskotas">
+    <g fill="#F2A93B">
+      <polygon points="50,2 56,20 44,20"/>
+      <polygon points="50,98 56,80 44,80"/>
+      <polygon points="2,50 20,56 20,44"/>
+      <polygon points="98,50 80,56 80,44"/>
+      <polygon points="14,14 28,24 20,30"/>
+      <polygon points="86,86 72,76 80,70"/>
+      <polygon points="86,14 76,28 70,20"/>
+      <polygon points="14,86 24,72 30,80"/>
+    </g>
+    <circle cx="50" cy="50" r="26" fill="#D14B3F"/>
+    <circle cx="41" cy="46" r="3.2" fill="#FBF3E3"/>
+    <circle cx="59" cy="46" r="3.2" fill="#FBF3E3"/>
+    <path d="M 38 58 Q 50 68 62 58" stroke="#FBF3E3" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+</template>
+
+<div class="app-shell">
+
+  <button id="btn-sound-toggle" class="sound-toggle" aria-label="Įjungti arba išjungti garsą" aria-pressed="false">🔊</button>
+
+  <!-- ================= PRADŽIA ================= -->
+  <section id="screen-home" class="screen">
+    <div class="mascot-slot" data-mascot></div>
+    <h1 class="title">Saulutė žaidžia!</h1>
+    <p class="subtitle">Mokykis lietuvių kalbos žaisdamas</p>
+    <div class="folk-divider"></div>
+    <div class="btn-row" style="margin-top:32px;">
+      <button id="btn-start" class="btn btn--primary">Žaisti!</button>
+    </div>
+  </section>
+
+  <!-- ================= TEMOS PASIRINKIMAS ================= -->
+  <section id="screen-categories" class="screen">
+    <h1 class="title" style="font-size:1.8rem;">Pasirink temą</h1>
+    <div id="category-grid" class="category-grid"></div>
+    <button id="btn-back-home" class="btn btn--ghost" style="margin-top:24px;">← Atgal</button>
+  </section>
+
+  <!-- ================= ŽAIDIMAS ================= -->
+  <section id="screen-game" class="screen">
+    <div id="game-category-label"></div>
+    <div id="game-area" style="width:100%;"></div>
+  </section>
+
+  <!-- ================= REZULTATAI ================= -->
+  <section id="screen-results" class="screen">
+    <div class="mascot-slot" data-mascot></div>
+    <div id="results-content"></div>
+    <div class="btn-row">
+      <button id="btn-play-again" class="btn btn--primary">Dar kartą</button>
+      <button id="btn-choose-another" class="btn btn--secondary">Kita tema</button>
+    </div>
+  </section>
+
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/phrases.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/mechanics/matching.js"></script>
+<script src="js/mechanics/quiz.js"></script>
+<script src="js/mechanics/dragdrop.js"></script>
+<script src="js/mechanics/index.js"></script>
+<script src="js/game.js"></script>
+<script>
+  document.querySelectorAll('[data-mascot]').forEach(slot => {
+    const tpl = document.getElementById('tpl-sun-mascot');
+    slot.appendChild(tpl.content.cloneNode(true));
+  });
+</script>
+</body>
+</html>
