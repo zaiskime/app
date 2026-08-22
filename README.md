@@ -71,8 +71,9 @@ uses the browser default).
 
 ## Current scope (MVP)
 
-- **4 vocabulary categories:** Gyvūnai (animals), Vaisiai (fruits), Daržovės (vegetables),
-  Daiktai (objects) — 8 nouns each, gender-tagged
+- **9 vocabulary categories:** Gyvūnai (animals), Vaisiai (fruits), Daržovės (vegetables),
+  Daiktai (objects), Kūno dalys (body parts), Drabužiai (clothes), Transportas (transportation),
+  Gamtos daiktai (nature), Maistas (food) — 8 nouns each, gender-tagged
 - **3 difficulty levels** mapped to the Lithuanian primary-school system (1, 2, 3 klasė):
   - **1 klasė** — 5 items/round, numbers 1–5, only noun+adjective / noun+quantity (no triple combo)
   - **2 klasė** — 6 items/round, numbers 1–7, all three phrase patterns

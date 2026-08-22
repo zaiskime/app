@@ -91,6 +91,86 @@ const CATEGORIES = [
       { id: "raktas", sg: "raktas", pl: "raktai", gender: "m", emoji: "🔑" },
       { id: "lempa", sg: "lempa", pl: "lempos", gender: "f", emoji: "💡" }
     ]
+  },
+  {
+    id: "body",
+    nameLt: "Kūno dalys",
+    icon: "🧍",
+    color: "#E88CA5",
+    nouns: [
+      { id: "galva", sg: "galva", pl: "galvos", gender: "f", emoji: "👤" },
+      { id: "ranka", sg: "ranka", pl: "rankos", gender: "f", emoji: "✋" },
+      { id: "koja", sg: "koja", pl: "kojos", gender: "f", emoji: "🦵" },
+      { id: "akis", sg: "akis", pl: "akys", gender: "f", emoji: "👁️" },
+      { id: "ausis", sg: "ausis", pl: "ausys", gender: "f", emoji: "👂" },
+      { id: "nosis", sg: "nosis", pl: "nosys", gender: "f", emoji: "👃" },
+      { id: "liezuvis", sg: "liežuvis", pl: "liežuviai", gender: "m", emoji: "👅" },
+      { id: "dantis", sg: "dantis", pl: "dantys", gender: "m", emoji: "🦷" }
+    ]
+  },
+  {
+    id: "clothes",
+    nameLt: "Drabužiai",
+    icon: "👕",
+    color: "#8B6BB5",
+    nouns: [
+      { id: "kepure", sg: "kepurė", pl: "kepurės", gender: "f", emoji: "🧢" },
+      { id: "sijonas", sg: "sijonas", pl: "sijonai", gender: "m", emoji: "👗" },
+      { id: "striuke", sg: "striukė", pl: "striukės", gender: "f", emoji: "🧥" },
+      { id: "salikas", sg: "šalikas", pl: "šalikai", gender: "m", emoji: "🧣" },
+      { id: "batas", sg: "batas", pl: "batai", gender: "m", emoji: "👟" },
+      { id: "pirstine", sg: "pirštinė", pl: "pirštinės", gender: "f", emoji: "🧤" },
+      { id: "kostiumas", sg: "kostiumas", pl: "kostiumai", gender: "m", emoji: "👔" },
+      { id: "kojine", sg: "kojinė", pl: "kojinės", gender: "f", emoji: "🧦" }
+    ]
+  },
+  {
+    id: "transport",
+    nameLt: "Transportas",
+    icon: "🚗",
+    color: "#5B9EA6",
+    nouns: [
+      { id: "masina", sg: "mašina", pl: "mašinos", gender: "f", emoji: "🚗" },
+      { id: "autobusas", sg: "autobusas", pl: "autobusai", gender: "m", emoji: "🚌" },
+      { id: "lektuvas", sg: "lėktuvas", pl: "lėktuvai", gender: "m", emoji: "✈️" },
+      { id: "dviratis", sg: "dviratis", pl: "dviračiai", gender: "m", emoji: "🚲" },
+      { id: "traukinys", sg: "traukinys", pl: "traukiniai", gender: "m", emoji: "🚂" },
+      { id: "laivas", sg: "laivas", pl: "laivai", gender: "m", emoji: "🚢" },
+      { id: "sraigtasparnis", sg: "sraigtasparnis", pl: "sraigtasparniai", gender: "m", emoji: "🚁" },
+      { id: "vagonas", sg: "vagonas", pl: "vagonai", gender: "m", emoji: "🚃" }
+    ]
+  },
+  {
+    id: "nature",
+    nameLt: "Gamtos daiktai",
+    icon: "🌳",
+    color: "#7AAB5C",
+    nouns: [
+      { id: "medis", sg: "medis", pl: "medžiai", gender: "m", emoji: "🌳" },
+      { id: "gele", sg: "gėlė", pl: "gėlės", gender: "f", emoji: "🌸" },
+      { id: "saule", sg: "saulė", pl: "saulės", gender: "f", emoji: "☀️" },
+      { id: "debesys", sg: "debesys", pl: "debesys", gender: "m", emoji: "☁️" },
+      { id: "uola", sg: "uola", pl: "uolos", gender: "f", emoji: "🪨" },
+      { id: "upe", sg: "upė", pl: "upės", gender: "f", emoji: "🌊" },
+      { id: "kalnas", sg: "kalnas", pl: "kalnai", gender: "m", emoji: "⛰️" },
+      { id: "miskas", sg: "miškas", pl: "miškai", gender: "m", emoji: "🌲" }
+    ]
+  },
+  {
+    id: "food",
+    nameLt: "Maistas",
+    icon: "🍎",
+    color: "#D4915E",
+    nouns: [
+      { id: "duona", sg: "duona", pl: "duonos", gender: "f", emoji: "🍞" },
+      { id: "suris", sg: "sūris", pl: "sūriai", gender: "m", emoji: "🧀" },
+      { id: "pienas", sg: "pienas", pl: "pienai", gender: "m", emoji: "🥛" },
+      { id: "sriuba", sg: "sriuba", pl: "sriubos", gender: "f", emoji: "🍲" },
+      { id: "mesa", sg: "mėsa", pl: "mėsos", gender: "f", emoji: "🥩" },
+      { id: "kiausinis", sg: "kiaušinis", pl: "kiaušiniai", gender: "m", emoji: "🥚" },
+      { id: "ryziai", sg: "ryžis", pl: "ryžiai", gender: "m", emoji: "🍚" },
+      { id: "makaronas", sg: "makaronas", pl: "makaronai", gender: "m", emoji: "🍝" }
+    ]
   }
 ];
 
