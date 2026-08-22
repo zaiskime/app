@@ -106,11 +106,30 @@ const Game = {
     if (!this.soundEnabled) LTSpeech.stop();
   },
 
+  toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(err => {
+        console.warn("Nepavyko įjungti pilno ekrano.", err);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  },
+
   updateSoundButton() {
     const btn = document.getElementById("btn-sound-toggle");
     if (!btn) return;
     btn.textContent = this.soundEnabled ? "🔊" : "🔇";
     btn.setAttribute("aria-pressed", String(!this.soundEnabled));
+  },
+
+  updateFullscreenButton() {
+    const btn = document.getElementById("btn-fullscreen-toggle");
+    if (!btn) return;
+    const isFull = !!document.fullscreenElement;
+    btn.textContent = isFull ? "⛶" : "⛶";
+    btn.setAttribute("aria-label", isFull ? "Išjungti pilną ekraną" : "Įjungti pilną ekraną");
+    btn.setAttribute("aria-pressed", String(isFull));
   },
 
   // Speaks a phrase item's Lithuanian text aloud, if sound is on and supported.
@@ -235,6 +254,15 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     soundBtn.style.display = "none";
   }
+
+  const fsBtn = document.getElementById("btn-fullscreen-toggle");
+  if (document.fullscreenEnabled) {
+    fsBtn.addEventListener("click", () => Game.toggleFullscreen());
+    Game.updateFullscreenButton();
+  } else {
+    fsBtn.style.display = "none";
+  }
+  document.addEventListener("fullscreenchange", () => Game.updateFullscreenButton());
 
   Game.goHome();
 });
