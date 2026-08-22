@@ -1,7 +1,7 @@
 // Matching mechanic: tap a picture tile, then tap the Lithuanian phrase that matches it.
 
 const MatchingMechanic = {
-  start(container, items, category, onComplete) {
+  start(container, items, category, level, onComplete) {
     let selectedItem = null;
     let matchedCount = 0;
     let correctCount = 0;

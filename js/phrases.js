@@ -1,6 +1,8 @@
 // Phrase generation & Lithuanian grammatical agreement logic.
 // A "phrase item" pairs a noun with an optional adjective and/or quantity,
 // all correctly inflected for gender/number agreement, plus a visual descriptor.
+// Difficulty (max quantity, which phrase patterns appear) is passed in per-call
+// from the currently selected level, so this file has no hardcoded difficulty.
 
 function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -33,34 +35,33 @@ function buildPhrase(noun, { adjective = null, quantity = null } = {}) {
   return parts.join(" ");
 }
 
-const PHRASE_TYPES = ["adj_noun", "num_noun", "num_adj_noun"];
-
-function makePhraseItem(noun, type) {
+function makePhraseItem(noun, type, maxQuantity) {
   let adjective = null;
   let quantity = null;
   if (type === "adj_noun") {
     adjective = pickRandom(ADJECTIVES);
   } else if (type === "num_noun") {
-    quantity = randomInt(1, 9);
+    quantity = randomInt(1, maxQuantity);
   } else {
     adjective = pickRandom(ADJECTIVES);
-    quantity = randomInt(1, 9);
+    quantity = randomInt(1, maxQuantity);
   }
   const text = buildPhrase(noun, { adjective, quantity });
   const id = [noun.id, type, adjective ? adjective.id : "x", quantity || "x"].join("_");
   return { id, noun, adjective, quantity, text };
 }
 
-// Generates a round's worth of unique phrase items, mixing all three phrase types.
-function generateRoundItems(category, count) {
+// Generates a round's worth of unique phrase items, mixing the phrase types
+// allowed at this difficulty level.
+function generateRoundItems(category, count, phraseTypes, maxQuantity) {
   const items = [];
   const usedIds = new Set();
   let guard = 0;
   while (items.length < count && guard < count * 30) {
     guard++;
     const noun = pickRandom(category.nouns);
-    const type = pickRandom(PHRASE_TYPES);
-    const item = makePhraseItem(noun, type);
+    const type = pickRandom(phraseTypes);
+    const item = makePhraseItem(noun, type, maxQuantity);
     if (!usedIds.has(item.id)) {
       usedIds.add(item.id);
       items.push(item);
@@ -71,7 +72,7 @@ function generateRoundItems(category, count) {
 
 // Generates a wrong-answer phrase by varying exactly one dimension (noun, adjective, or quantity)
 // away from the correct item, so distractors are plausible but clearly distinct.
-function generateDistractor(correctItem, category, excludeTexts) {
+function generateDistractor(correctItem, category, excludeTexts, maxQuantity) {
   const dims = ["noun"];
   if (correctItem.adjective) dims.push("adjective");
   if (correctItem.quantity) dims.push("quantity");
@@ -92,7 +93,7 @@ function generateDistractor(correctItem, category, excludeTexts) {
       adjective = pickRandom(others);
     } else if (dim === "quantity") {
       let q;
-      do { q = randomInt(1, 9); } while (q === quantity);
+      do { q = randomInt(1, maxQuantity); } while (q === quantity);
       quantity = q;
     }
 
@@ -104,13 +105,13 @@ function generateDistractor(correctItem, category, excludeTexts) {
   return null;
 }
 
-function generateDistractors(correctItem, category, n) {
+function generateDistractors(correctItem, category, n, maxQuantity) {
   const excludeTexts = new Set([correctItem.text]);
   const result = [];
   let guard = 0;
   while (result.length < n && guard < n * 20) {
     guard++;
-    const d = generateDistractor(correctItem, category, excludeTexts);
+    const d = generateDistractor(correctItem, category, excludeTexts, maxQuantity);
     if (d) {
       excludeTexts.add(d.text);
       result.push(d);

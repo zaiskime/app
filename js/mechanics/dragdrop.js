@@ -2,7 +2,7 @@
 // Uses Pointer Events (not native HTML5 DnD) so it works well on touch devices.
 
 const DragDropMechanic = {
-  start(container, items, category, onComplete) {
+  start(container, items, category, level, onComplete) {
     let placedCount = 0;
     let correctCount = 0;
     const total = items.length;

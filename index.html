@@ -40,10 +40,23 @@
     <div class="mascot-slot" data-mascot></div>
     <h1 class="title">Saulutė žaidžia!</h1>
     <p class="subtitle">Mokykis lietuvių kalbos žaisdamas</p>
+    <p class="level-indicator">Klasė: <span id="home-level-label">1 klasė</span></p>
+    <button id="btn-open-level" class="btn btn--secondary">Keisti klasę</button>
     <div class="folk-divider"></div>
     <div class="btn-row" style="margin-top:32px;">
       <button id="btn-start" class="btn btn--primary">Žaisti!</button>
     </div>
+  </section>
+
+  <!-- ================= KLASĖS PASIRINKIMAS ================= -->
+  <section id="screen-level" class="screen">
+    <h1 class="title" style="font-size:1.8rem;">Pasirink klasę</h1>
+    <div class="level-grid" id="level-grid">
+      <button class="level-card" data-level="1">1 klasė</button>
+      <button class="level-card" data-level="2">2 klasė</button>
+      <button class="level-card" data-level="3">3 klasė</button>
+    </div>
+    <button id="btn-level-back" class="btn btn--ghost" style="margin-top:24px;">← Atgal</button>
   </section>
 
   <!-- ================= TEMOS PASIRINKIMAS ================= -->
@@ -55,7 +68,10 @@
 
   <!-- ================= ŽAIDIMAS ================= -->
   <section id="screen-game" class="screen">
-    <div id="game-category-label"></div>
+    <div class="game-header">
+      <button id="btn-home-from-game" class="btn btn--ghost btn--small">🏠 Namai</button>
+      <div id="game-category-label"></div>
+    </div>
     <div id="game-area" style="width:100%;"></div>
   </section>
 
@@ -66,6 +82,7 @@
     <div class="btn-row">
       <button id="btn-play-again" class="btn btn--primary">Dar kartą</button>
       <button id="btn-choose-another" class="btn btn--secondary">Kita tema</button>
+      <button id="btn-home-from-results" class="btn btn--ghost">🏠 Namai</button>
     </div>
   </section>
 

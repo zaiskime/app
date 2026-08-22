@@ -1,16 +1,19 @@
-// Core game controller: screen routing, progress persistence, round orchestration.
+// Core game controller: screen routing, progress persistence, level selection,
+// round orchestration.
 
 const STORAGE_KEY = "ltGameProgress_v2";
 const SOUND_KEY = "ltGameSound_v1";
-const ROUND_LENGTH = 6;
+const LEVEL_KEY = "ltGameLevel_v1";
 
 const Game = {
   state: {
     currentCategory: null,
-    currentMechanic: null
+    currentMechanic: null,
+    level: LEVELS[0]
   },
   soundEnabled: true,
 
+  // ---------- Progress persistence ----------
   loadProgress() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -43,6 +46,41 @@ const Game = {
     entry.stars = Math.max(entry.stars, stars);
     this.saveProgress(progress);
     return entry;
+  },
+
+  // ---------- Level (difficulty) persistence ----------
+  loadLevel() {
+    try {
+      const id = parseInt(localStorage.getItem(LEVEL_KEY), 10);
+      return LEVELS.find(l => l.id === id) || LEVELS[0];
+    } catch (e) {
+      return LEVELS[0];
+    }
+  },
+
+  saveLevel(id) {
+    try {
+      localStorage.setItem(LEVEL_KEY, String(id));
+    } catch (e) {}
+  },
+
+  selectLevel(id) {
+    const level = LEVELS.find(l => l.id === id) || LEVELS[0];
+    this.state.level = level;
+    this.saveLevel(id);
+    this.goToCategories();
+  },
+
+  updateHomeLevelLabel() {
+    const el = document.getElementById("home-level-label");
+    if (el) el.textContent = this.state.level.nameLt;
+  },
+
+  renderLevelScreen() {
+    document.querySelectorAll("#level-grid .level-card").forEach(btn => {
+      const isSelected = parseInt(btn.dataset.level, 10) === this.state.level.id;
+      btn.classList.toggle("level-card--selected", isSelected);
+    });
   },
 
   // ---------- Sound (Web Speech API) ----------
@@ -83,13 +121,21 @@ const Game = {
     }
   },
 
+  // ---------- Screen routing ----------
   showScreen(id) {
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("screen--active"));
     document.getElementById(id).classList.add("screen--active");
   },
 
   goHome() {
+    LTSpeech.stop();
+    this.updateHomeLevelLabel();
     this.showScreen("screen-home");
+  },
+
+  goToLevelSelect() {
+    this.renderLevelScreen();
+    this.showScreen("screen-level");
   },
 
   goToCategories() {
@@ -116,23 +162,25 @@ const Game = {
     });
   },
 
+  // ---------- Round orchestration ----------
   startRound(categoryId) {
     const category = CATEGORIES.find(c => c.id === categoryId);
     if (!category) return;
 
     this.state.currentCategory = category;
+    const level = this.state.level;
 
     const mechanics = ["matching", "quiz", "dragdrop"];
     const mechanicKey = mechanics[Math.floor(Math.random() * mechanics.length)];
     this.state.currentMechanic = mechanicKey;
 
-    const items = generateRoundItems(category, ROUND_LENGTH);
+    const items = generateRoundItems(category, level.roundLength, level.phraseTypes, level.maxQuantity);
 
     const container = document.getElementById("game-area");
     container.innerHTML = "";
     document.getElementById("game-category-label").textContent = `${category.icon} ${category.nameLt}`;
 
-    Mechanics[mechanicKey].start(container, items, category, (correct, total) => {
+    Mechanics[mechanicKey].start(container, items, category, level, (correct, total) => {
       this.finishRound(correct, total);
     });
 
@@ -163,8 +211,19 @@ const Game = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  Game.state.level = Game.loadLevel();
+
   document.getElementById("btn-start").addEventListener("click", () => Game.goToCategories());
+  document.getElementById("btn-open-level").addEventListener("click", () => Game.goToLevelSelect());
+  document.getElementById("btn-level-back").addEventListener("click", () => Game.goHome());
+  document.querySelectorAll("#level-grid .level-card").forEach(btn => {
+    btn.addEventListener("click", () => Game.selectLevel(parseInt(btn.dataset.level, 10)));
+  });
+
   document.getElementById("btn-back-home").addEventListener("click", () => Game.goHome());
+  document.getElementById("btn-home-from-game").addEventListener("click", () => Game.goHome());
+  document.getElementById("btn-home-from-results").addEventListener("click", () => Game.goHome());
+
   document.getElementById("btn-play-again").addEventListener("click", () => Game.playAgain());
   document.getElementById("btn-choose-another").addEventListener("click", () => Game.goToCategories());
 
@@ -174,8 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
     Game.updateSoundButton();
     soundBtn.addEventListener("click", () => Game.toggleSound());
   } else {
-    // No Web Speech API support (or no voices) — hide the control entirely
-    // rather than offering a toggle that does nothing.
     soundBtn.style.display = "none";
   }
 

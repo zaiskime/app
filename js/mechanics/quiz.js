@@ -1,14 +1,14 @@
 // Quiz mechanic: show a visual tile, pick the correctly-inflected phrase from 4 options.
 
 const QuizMechanic = {
-  start(container, items, category, onComplete) {
+  start(container, items, category, level, onComplete) {
     let index = 0;
     let correctCount = 0;
     const total = items.length;
 
     const renderQuestion = () => {
       const current = items[index];
-      const distractors = generateDistractors(current, category, 3);
+      const distractors = generateDistractors(current, category, 3, level.maxQuantity);
       const options = [current, ...distractors].sort(() => Math.random() - 0.5);
 
       container.innerHTML = `

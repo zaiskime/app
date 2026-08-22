@@ -71,20 +71,33 @@ uses the browser default).
 
 ## Current scope (MVP)
 
-- 2 vocabulary categories: Gyvūnai (animals), Vaisiai (fruits) — 8 nouns each, gender-tagged
+- **4 vocabulary categories:** Gyvūnai (animals), Vaisiai (fruits), Daržovės (vegetables),
+  Daiktai (objects) — 8 nouns each, gender-tagged
+- **3 difficulty levels** mapped to the Lithuanian primary-school system (1, 2, 3 klasė):
+  - **1 klasė** — 5 items/round, numbers 1–5, only noun+adjective / noun+quantity (no triple combo)
+  - **2 klasė** — 6 items/round, numbers 1–7, all three phrase patterns
+  - **3 klasė** — 8 items/round, numbers 1–9, all three phrase patterns
+  Level is chosen from the home screen ("Keisti klasę") and persists in `localStorage`.
 - 6 color adjectives + 2 size adjectives (didelis/mažas), each with masc/fem × singular/plural forms
 - Numbers 1–9 with correct Lithuanian gender agreement (e.g. vienas šuo / viena katė, keturi šunys / keturios katės)
-- Each round mixes three phrase patterns: **noun+adjective**, **noun+quantity**, **noun+adjective+quantity**
-  — all grammatically agreeing, generated on the fly (not hardcoded strings)
+- Each round mixes the phrase patterns allowed at the current level: **noun+adjective**,
+  **noun+quantity**, **noun+adjective+quantity** — all grammatically agreeing, generated on the fly
 - Visual tiles: quantity shown as repeated emoji, color adjectives as a tinted tile, size adjectives as
   scaled emoji — so agreement is visible, not just textual
 - 3 game mechanics, randomly rotated per round, for variety
 - Star-rated progress per category, saved in `localStorage`
+- **Navigation:** home button available from the game screen and results screen at all times;
+  category screen has its own back-to-home button
 - Fully responsive, touch-friendly (drag & drop uses Pointer Events, not HTML5 native DnD)
 - UI text is Lithuanian only, throughout
+- Pronunciation via the Web Speech API (see Audio section below)
 
 ## Extending it
 
+- **Add a new level**: add an entry to `LEVELS` in `js/data.js` with `id`, `nameLt`, `roundLength`,
+  `maxQuantity`, and `phraseTypes` (any subset of `["adj_noun", "num_noun", "num_adj_noun"]`).
+  It'll automatically appear in the level-select screen if you also add a matching `.level-card`
+  button in `index.html`.
 - **Add nouns**: add entries to a category's `nouns` array in `js/data.js`. Each needs `id`, `sg`
   (nominative singular), `pl` (nominative plural), `gender` (`"m"`/`"f"`), `emoji`.
   Note: numbers 1–9 only ever require nominative plural (not genitive), so no case logic beyond

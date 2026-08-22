@@ -1,6 +1,6 @@
 // Vocabulary data: nouns (with gender + plural), adjectives (full agreement forms),
-// and numbers 1-9 (with gender forms), used to generate real Lithuanian phrases
-// like "trys raudoni obuoliai" (quantity + adjective + noun, all agreeing).
+// numbers 1-9 (with gender forms), and difficulty levels mapped to the Lithuanian
+// primary-school "klasė" system.
 
 // index 0 unused, so NUMBERS[3] === the word for "3"
 const NUMBERS = [
@@ -59,5 +59,46 @@ const CATEGORIES = [
       { id: "citrina", sg: "citrina", pl: "citrinos", gender: "f", emoji: "🍋" },
       { id: "vysnia", sg: "vyšnia", pl: "vyšnios", gender: "f", emoji: "🍒" }
     ]
+  },
+  {
+    id: "vegetables",
+    nameLt: "Daržovės",
+    icon: "🥕",
+    color: "var(--c-sun)",
+    nouns: [
+      { id: "morka", sg: "morka", pl: "morkos", gender: "f", emoji: "🥕" },
+      { id: "agurkas", sg: "agurkas", pl: "agurkai", gender: "m", emoji: "🥒" },
+      { id: "pomidoras", sg: "pomidoras", pl: "pomidorai", gender: "m", emoji: "🍅" },
+      { id: "bulve", sg: "bulvė", pl: "bulvės", gender: "f", emoji: "🥔" },
+      { id: "kopustas", sg: "kopūstas", pl: "kopūstai", gender: "m", emoji: "🥬" },
+      { id: "svogunas", sg: "svogūnas", pl: "svogūnai", gender: "m", emoji: "🧅" },
+      { id: "paprika", sg: "paprika", pl: "paprikos", gender: "f", emoji: "🫑" },
+      { id: "cesnakas", sg: "česnakas", pl: "česnakai", gender: "m", emoji: "🧄" }
+    ]
+  },
+  {
+    id: "objects",
+    nameLt: "Daiktai",
+    icon: "🧸",
+    color: "var(--c-sky)",
+    nouns: [
+      { id: "kamuolys", sg: "kamuolys", pl: "kamuoliai", gender: "m", emoji: "⚽" },
+      { id: "knyga", sg: "knyga", pl: "knygos", gender: "f", emoji: "📖" },
+      { id: "kede", sg: "kėdė", pl: "kėdės", gender: "f", emoji: "🪑" },
+      { id: "langas", sg: "langas", pl: "langai", gender: "m", emoji: "🪟" },
+      { id: "lova", sg: "lova", pl: "lovos", gender: "f", emoji: "🛏️" },
+      { id: "laikrodis", sg: "laikrodis", pl: "laikrodžiai", gender: "m", emoji: "🕐" },
+      { id: "raktas", sg: "raktas", pl: "raktai", gender: "m", emoji: "🔑" },
+      { id: "lempa", sg: "lempa", pl: "lempos", gender: "f", emoji: "💡" }
+    ]
   }
+];
+
+// Difficulty levels mapped to the Lithuanian primary-school class system.
+// maxQuantity caps how high numbers go; phraseTypes controls which grammatical
+// patterns appear (younger levels skip the hardest triple combo).
+const LEVELS = [
+  { id: 1, nameLt: "1 klasė", roundLength: 5, maxQuantity: 5, phraseTypes: ["adj_noun", "num_noun"] },
+  { id: 2, nameLt: "2 klasė", roundLength: 6, maxQuantity: 7, phraseTypes: ["adj_noun", "num_noun", "num_adj_noun"] },
+  { id: 3, nameLt: "3 klasė", roundLength: 8, maxQuantity: 9, phraseTypes: ["adj_noun", "num_noun", "num_adj_noun"] }
 ];
