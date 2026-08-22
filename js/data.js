@@ -178,7 +178,8 @@ const CATEGORIES = [
 // maxQuantity caps how high numbers go; phraseTypes controls which grammatical
 // patterns appear (younger levels skip the hardest triple combo).
 const LEVELS = [
-  { id: 1, nameLt: "1 klasė", roundLength: 5, maxQuantity: 5, phraseTypes: ["adj_noun", "num_noun"] },
-  { id: 2, nameLt: "2 klasė", roundLength: 6, maxQuantity: 7, phraseTypes: ["adj_noun", "num_noun", "num_adj_noun"] },
-  { id: 3, nameLt: "3 klasė", roundLength: 8, maxQuantity: 9, phraseTypes: ["adj_noun", "num_noun", "num_adj_noun"] }
+  { id: 1, nameLt: "1 klasė", roundLength: 4, maxQuantity: 3, phraseTypes: ["adj_noun"] },
+  { id: 2, nameLt: "2 klasė", roundLength: 5, maxQuantity: 5, phraseTypes: ["adj_noun", "num_noun"] },
+  { id: 3, nameLt: "3 klasė", roundLength: 7, maxQuantity: 7, phraseTypes: ["adj_noun", "num_noun", "num_adj_noun"] },
+  { id: 4, nameLt: "4 klasė", roundLength: 9, maxQuantity: 9, phraseTypes: ["adj_noun", "num_noun", "num_adj_noun"] }
 ];

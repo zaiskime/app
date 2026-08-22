@@ -74,10 +74,11 @@ uses the browser default).
 - **9 vocabulary categories:** Gyvūnai (animals), Vaisiai (fruits), Daržovės (vegetables),
   Daiktai (objects), Kūno dalys (body parts), Drabužiai (clothes), Transportas (transportation),
   Gamtos daiktai (nature), Maistas (food) — 8 nouns each, gender-tagged
-- **3 difficulty levels** mapped to the Lithuanian primary-school system (1, 2, 3 klasė):
-  - **1 klasė** — 5 items/round, numbers 1–5, only noun+adjective / noun+quantity (no triple combo)
-  - **2 klasė** — 6 items/round, numbers 1–7, all three phrase patterns
-  - **3 klasė** — 8 items/round, numbers 1–9, all three phrase patterns
+- **4 difficulty levels** mapped to the Lithuanian primary-school system (1–4 klasė):
+  - **1 klasė** — 4 items/round, numbers 1–3, noun+adjective only
+  - **2 klasė** — 5 items/round, numbers 1–5, noun+adjective + noun+quantity
+  - **3 klasė** — 7 items/round, numbers 1–7, all three phrase patterns
+  - **4 klasė** — 9 items/round, numbers 1–9, all three phrase patterns
   Level is chosen from the home screen ("Keisti klasę") and persists in `localStorage`.
 - 6 color adjectives + 2 size adjectives (didelis/mažas), each with masc/fem × singular/plural forms
 - Numbers 1–9 with correct Lithuanian gender agreement (e.g. vienas šuo / viena katė, keturi šunys / keturios katės)
