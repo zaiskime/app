@@ -73,6 +73,7 @@ const DragDropMechanic = {
             chip.classList.add("drag-chip--done");
             chip.style.visibility = "hidden";
             Game.playSound(item);
+            FX.celebrate(zone);
           } else {
             zone.classList.add("drop-zone--wrong");
             setTimeout(() => zone.classList.remove("drop-zone--wrong"), 400);

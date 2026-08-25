@@ -30,8 +30,10 @@ const QuizMechanic = {
           if (opt.text === current.text) {
             btn.classList.add("quiz-option--correct");
             correctCount++;
+            FX.celebrate(btn);
           } else {
             btn.classList.add("quiz-option--wrong");
+            setTimeout(() => btn.classList.remove("quiz-option--wrong"), 400);
             const correctBtn = [...optionsEl.children].find(b => b.textContent === current.text);
             if (correctBtn) correctBtn.classList.add("quiz-option--correct");
           }

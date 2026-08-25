@@ -48,13 +48,14 @@ const MatchingMechanic = {
           visualBtn.classList.add("match-tile--done", "match-tile--correct");
           correctCount++;
           Game.playSound(item);
+          FX.celebrate(btn);
         } else {
           btn.classList.add("match-tile--wrong");
           visualBtn.classList.add("match-tile--wrong");
           setTimeout(() => {
             btn.classList.remove("match-tile--wrong");
             visualBtn.classList.remove("match-tile--wrong");
-          }, 500);
+          }, 400);
         }
         visualBtn.classList.remove("match-tile--selected");
         selectedItem = null;

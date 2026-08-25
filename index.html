@@ -68,6 +68,14 @@
     <button id="btn-back-home" class="btn btn--ghost" style="margin-top:24px;">← Atgal</button>
   </section>
 
+  <!-- ================= ŽAIDIMO TIPAS ================= -->
+  <section id="screen-mechanic" class="screen">
+    <h1 class="title" style="font-size:1.8rem;">Pasirink žaidimą</h1>
+    <p class="subtitle" id="mechanic-subtitle"></p>
+    <div id="mechanic-grid" class="mechanic-grid"></div>
+    <button id="btn-mechanic-back" class="btn btn--ghost" style="margin-top:24px;">← Atgal</button>
+  </section>
+
   <!-- ================= ŽAIDIMAS ================= -->
   <section id="screen-game" class="screen">
     <div class="game-header">
@@ -90,14 +98,16 @@
 
 </div>
 
-<script src="js/data.js"></script>
-<script src="js/phrases.js"></script>
-<script src="js/audio.js"></script>
-<script src="js/mechanics/matching.js"></script>
-<script src="js/mechanics/quiz.js"></script>
-<script src="js/mechanics/dragdrop.js"></script>
-<script src="js/mechanics/index.js"></script>
-<script src="js/game.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/phrases.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/fx.js"></script>
+  <script src="js/mechanics/matching.js"></script>
+  <script src="js/mechanics/quiz.js"></script>
+  <script src="js/mechanics/dragdrop.js"></script>
+  <script src="js/mechanics/fill.js"></script>
+  <script src="js/mechanics/index.js"></script>
+  <script src="js/game.js"></script>
 <script>
   document.querySelectorAll('[data-mascot]').forEach(slot => {
     const tpl = document.getElementById('tpl-sun-mascot');

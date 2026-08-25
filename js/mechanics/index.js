@@ -2,5 +2,6 @@
 const Mechanics = {
   matching: MatchingMechanic,
   quiz: QuizMechanic,
-  dragdrop: DragDropMechanic
+  dragdrop: DragDropMechanic,
+  fill: FillMechanic
 };

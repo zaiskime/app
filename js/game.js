@@ -9,6 +9,7 @@ const Game = {
   state: {
     currentCategory: null,
     currentMechanic: null,
+    pendingCategoryId: null,
     level: LEVELS[0]
   },
   soundEnabled: true,
@@ -176,22 +177,64 @@ const Game = {
         <span class="category-card__name">${cat.nameLt}</span>
         <span class="category-card__stars">${"⭐".repeat(entry.stars)}${"☆".repeat(3 - entry.stars)}</span>
       `;
-      card.addEventListener("click", () => this.startRound(cat.id));
+      card.addEventListener("click", () => this.goToMechanicSelect(cat.id));
+      grid.appendChild(card);
+    });
+  },
+
+  goToMechanicSelect(categoryId) {
+    const category = CATEGORIES.find(c => c.id === categoryId);
+    if (!category) return;
+    this.state.pendingCategoryId = categoryId;
+    this.renderMechanicScreen();
+    this.showScreen("screen-mechanic");
+  },
+
+  renderMechanicScreen() {
+    const level = this.state.level;
+    const baseMechanics = ["matching", "quiz", "dragdrop"];
+    const mechanics = level.id >= 2 ? [...baseMechanics, "fill"] : baseMechanics;
+    const all = ["random", ...mechanics];
+
+    document.getElementById("mechanic-subtitle").textContent = `${CATEGORIES.find(c => c.id === this.state.pendingCategoryId)?.icon || ""} ${CATEGORIES.find(c => c.id === this.state.pendingCategoryId)?.nameLt || ""}`;
+
+    const grid = document.getElementById("mechanic-grid");
+    grid.innerHTML = "";
+    const labels = { random: "🎲 Atsitiktinai", matching: "🔲 Sudėliok", quiz: "❓ Testas", dragdrop: "✋ Tempk", fill: "✏️ Užpildyk" };
+    all.forEach(key => {
+      const card = document.createElement("button");
+      card.className = "mechanic-card";
+      if (key === "random") card.classList.add("mechanic-card--selected");
+      card.innerHTML = `
+        <span class="mechanic-card__icon">${labels[key]?.split(" ")[0] || ""}</span>
+        <span class="mechanic-card__name">${labels[key] || key}</span>
+      `;
+      card.addEventListener("click", () => {
+        this.startGame(this.state.pendingCategoryId, key === "random" ? null : key);
+      });
       grid.appendChild(card);
     });
   },
 
   // ---------- Round orchestration ----------
-  startRound(categoryId) {
+  startGame(categoryId, mechanicKey) {
     const category = CATEGORIES.find(c => c.id === categoryId);
     if (!category) return;
 
     this.state.currentCategory = category;
+    this.state.currentMechanic = mechanicKey;
     const level = this.state.level;
 
-    const mechanics = ["matching", "quiz", "dragdrop"];
-    const mechanicKey = mechanics[Math.floor(Math.random() * mechanics.length)];
-    this.state.currentMechanic = mechanicKey;
+    const baseMechanics = ["matching", "quiz", "dragdrop"];
+    const mechanics = level.id >= 2 ? [...baseMechanics, "fill"] : baseMechanics;
+
+    let chosenMechanic;
+    if (mechanicKey && mechanics.includes(mechanicKey)) {
+      chosenMechanic = mechanicKey;
+    } else {
+      chosenMechanic = mechanics[Math.floor(Math.random() * mechanics.length)];
+    }
+    this.state.currentMechanic = chosenMechanic;
 
     const items = generateRoundItems(category, level.roundLength, level.phraseTypes, level.maxQuantity);
 
@@ -199,7 +242,7 @@ const Game = {
     container.innerHTML = "";
     document.getElementById("game-category-label").textContent = `${category.icon} ${category.nameLt}`;
 
-    Mechanics[mechanicKey].start(container, items, category, level, (correct, total) => {
+    Mechanics[chosenMechanic].start(container, items, category, level, (correct, total) => {
       this.finishRound(correct, total);
     });
 
@@ -225,7 +268,7 @@ const Game = {
   },
 
   playAgain() {
-    this.startRound(this.state.currentCategory.id);
+    this.goToMechanicSelect(this.state.currentCategory.id);
   }
 };
 
@@ -240,6 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("btn-back-home").addEventListener("click", () => Game.goHome());
+  document.getElementById("btn-mechanic-back").addEventListener("click", () => Game.goToCategories());
   document.getElementById("btn-home-from-game").addEventListener("click", () => Game.goHome());
   document.getElementById("btn-home-from-results").addEventListener("click", () => Game.goHome());
 

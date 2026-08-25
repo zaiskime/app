@@ -201,6 +201,34 @@ h1.title {
 }
 
 /* ==========================================================================
+   Mechanic selector (testing / manual pick)
+   ========================================================================== */
+.mechanic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  width: 100%;
+  margin-top: 12px;
+}
+.mechanic-card {
+  background: white;
+  border: 3px solid var(--c-cream-dark);
+  border-radius: var(--radius-lg);
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  box-shadow: var(--shadow-soft);
+}
+.mechanic-card:active { transform: translateY(4px); box-shadow: none; }
+.mechanic-card--selected { border-color: var(--c-sun-dark); background: #FDF3E0; }
+.mechanic-card__icon { font-size: 2rem; }
+.mechanic-card__name { font-family: var(--font-display); font-size: 1.1rem; }
+
+/* ==========================================================================
    Category selection
    ========================================================================== */
 .category-grid {
@@ -365,6 +393,82 @@ h1.title {
 .results__stars { font-size: 2.5rem; margin: 8px 0; }
 .results__message { font-family: var(--font-display); font-size: 1.4rem; margin: 0 0 4px; }
 .results__score { opacity: 0.7; margin: 0 0 12px; }
+
+/* ==========================================================================
+   Success animation & particles
+   ========================================================================== */
+.success-burst {
+  animation: success-pop 0.5s ease-out;
+}
+@keyframes success-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.15); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.success-particle {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--c-sun);
+  pointer-events: none;
+  z-index: 100;
+  animation: particle-fly 0.7s ease-out forwards;
+}
+@keyframes particle-fly {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+}
+
+/* ==========================================================================
+   Fill mechanic
+   ========================================================================== */
+.fill-input-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.fill-input {
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 3px solid var(--c-cream-dark);
+  background: white;
+  text-align: center;
+  min-width: 180px;
+  max-width: 70vw;
+  line-height: 1.4;
+  outline: none;
+}
+.fill-input:focus {
+  border-color: var(--c-sky);
+}
+.fill-input--correct {
+  border-color: var(--c-forest);
+  background: #E7F4EA;
+}
+.fill-input--wrong {
+  border-color: var(--c-cherry);
+  background: #FBEAE8;
+}
+.fill-char {
+  letter-spacing: 0.02em;
+}
+.fill-char--correct {
+  color: var(--c-forest);
+}
+.fill-char--wrong {
+  color: var(--c-cherry);
+}
+.fill-sentence {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 16px;
+}
 
 /* Focus visibility for keyboard users */
 button:focus-visible {
