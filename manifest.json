@@ -1,0 +1,33 @@
+{
+  "name": "Saulutė žaidžia lietuviškai",
+  "short_name": "Saulutė",
+  "description": "Mokykis lietuvių kalbos žaisdamas — žodynas, gramatika ir skaičiai",
+  "start_url": "/app/",
+  "scope": "/app/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FBF3E3",
+  "theme_color": "#D14B3F",
+  "lang": "lt",
+  "categories": ["education", "games"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
