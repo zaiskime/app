@@ -29,14 +29,19 @@ const FillMechanic = {
       container.querySelector("#fill-visual").appendChild(renderVisualTile(current));
 
       const input = container.querySelector("#fill-input");
+      const submitBtn = container.querySelector("#fill-submit");
       const missing = missingWord;
 
       const colorize = () => {
         const text = input.textContent || "";
         let html = "";
         for (let i = 0; i < text.length; i++) {
-          const isMatch = text[i].toLowerCase() === missing[i].toLowerCase();
-          html += `<span class="fill-char${isMatch ? " fill-char--correct" : " fill-char--wrong"}">${text[i]}</span>`;
+          if (i < missing.length) {
+            const isMatch = text[i].toLowerCase() === missing[i].toLowerCase();
+            html += `<span class="fill-char${isMatch ? " fill-char--correct" : " fill-char--wrong"}">${text[i]}</span>`;
+          } else {
+            html += `<span class="fill-char fill-char--wrong">${text[i]}</span>`;
+          }
         }
         input.innerHTML = html;
         placeCaretAtEnd(input);
@@ -71,6 +76,7 @@ const FillMechanic = {
       };
 
       input.addEventListener("input", colorize);
+      submitBtn.addEventListener("click", checkAnswer);
       input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           e.preventDefault();
