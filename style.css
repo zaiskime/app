@@ -540,6 +540,117 @@ h1.title {
   margin-top: 8px;
 }
 
+/* ==========================================================================
+   Reward choice buttons
+   ========================================================================== */
+.reward-choice-label {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--c-cherry);
+  margin: 12px 0 8px;
+}
+
+.reward-choice-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Snake reward mini game
+   ========================================================================== */
+.snake-game {
+  width: 100%;
+  max-width: 320px;
+  margin: 16px auto 0;
+  padding: 20px;
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 3px solid var(--c-forest);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.snake-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--c-forest);
+  margin: 0 0 8px;
+}
+
+.snake-game > div:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 270px;
+  margin-bottom: 8px;
+}
+
+.snake-status {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--c-ink);
+}
+
+.snake-status--dead {
+  color: var(--c-cherry);
+}
+
+.snake-score {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--c-forest);
+}
+
+.snake-canvas {
+  border: 3px solid var(--c-cream-dark);
+  border-radius: var(--radius-md);
+  max-width: 100%;
+  height: auto;
+}
+
+.snake-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 48px);
+  grid-template-rows: repeat(2, 48px);
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.snake-btn {
+  font-size: 1.3rem;
+  border: 2px solid var(--c-cream-dark);
+  background: var(--c-cream);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.1s ease;
+}
+
+.snake-btn:active {
+  background: var(--c-cream-dark);
+  transform: translateY(2px);
+}
+
+.snake-controls .snake-btn:nth-child(1) { grid-column: 2; grid-row: 1; }
+.snake-controls .snake-btn:nth-child(2) { grid-column: 1; grid-row: 2; }
+.snake-controls .snake-btn:nth-child(3) { grid-column: 2; grid-row: 2; }
+.snake-controls .snake-btn:nth-child(4) { grid-column: 3; grid-row: 2; }
+
+.snake-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100;
+  animation: particle-fly 0.6s ease-out forwards;
+}
+
 /* Focus visibility for keyboard users */
 button:focus-visible {
   outline: 3px solid var(--c-sky);

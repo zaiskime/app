@@ -270,15 +270,46 @@ const Game = {
     resultsEl.appendChild(oxoSlot);
 
     if (pct >= 50) {
-      OXOGame.render(oxoSlot);
+      this.renderRewardChoice(oxoSlot);
     } else {
       const tryAgainMsg = document.createElement("p");
       tryAgainMsg.className = "oxo-locked-message";
-      tryAgainMsg.textContent = "🔒 Gauk 50% ar daugiamiau, kad atidarytum OXO žaidimą!";
+      tryAgainMsg.textContent = "🔒 Gauk 50% ar daugiau, kad atidarytum OXO žaidimą!";
       oxoSlot.appendChild(tryAgainMsg);
     }
 
     this.showScreen("screen-results");
+  },
+
+  renderRewardChoice(parent) {
+    parent.innerHTML = "";
+    const label = document.createElement("p");
+    label.className = "reward-choice-label";
+    label.textContent = "🎮 Pasirink prizą:";
+    parent.appendChild(label);
+
+    const btns = document.createElement("div");
+    btns.className = "reward-choice-btns";
+
+    const oxoBtn = document.createElement("button");
+    oxoBtn.className = "btn btn--secondary";
+    oxoBtn.textContent = "❌⭕ OXO";
+    oxoBtn.addEventListener("click", () => {
+      parent.innerHTML = "";
+      OXOGame.render(parent);
+    });
+
+    const snakeBtn = document.createElement("button");
+    snakeBtn.className = "btn btn--secondary";
+    snakeBtn.textContent = "🐍 Žasė";
+    snakeBtn.addEventListener("click", () => {
+      parent.innerHTML = "";
+      SnakeGame.render(parent);
+    });
+
+    btns.appendChild(oxoBtn);
+    btns.appendChild(snakeBtn);
+    parent.appendChild(btns);
   },
 
   playAgain() {
