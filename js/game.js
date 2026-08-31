@@ -307,8 +307,17 @@ const Game = {
       SnakeGame.render(parent);
     });
 
+    const tetrisBtn = document.createElement("button");
+    tetrisBtn.className = "btn btn--secondary";
+    tetrisBtn.textContent = "🧱 Tetris";
+    tetrisBtn.addEventListener("click", () => {
+      parent.innerHTML = "";
+      TetrisGame.render(parent);
+    });
+
     btns.appendChild(oxoBtn);
     btns.appendChild(snakeBtn);
+    btns.appendChild(tetrisBtn);
     parent.appendChild(btns);
   },
 
