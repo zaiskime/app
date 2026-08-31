@@ -115,7 +115,7 @@ const CATEGORIES = [
     color: "#8B6BB5",
     nouns: [
       { id: "kepure", sg: "kepurė", pl: "kepurės", gender: "f", emoji: "🧢" },
-      { id: "sijonas", sg: "sijonas", pl: "sijonai", gender: "m", emoji: "👗" },
+      { id: "suknele", sg: "suknelė", pl: "suknelės", gender: "f", emoji: "👗" },
       { id: "striuke", sg: "striukė", pl: "striukės", gender: "f", emoji: "🧥" },
       { id: "salikas", sg: "šalikas", pl: "šalikai", gender: "m", emoji: "🧣" },
       { id: "batas", sg: "batas", pl: "batai", gender: "m", emoji: "👟" },
@@ -149,9 +149,9 @@ const CATEGORIES = [
       { id: "medis", sg: "medis", pl: "medžiai", gender: "m", emoji: "🌳" },
       { id: "gele", sg: "gėlė", pl: "gėlės", gender: "f", emoji: "🌸" },
       { id: "saule", sg: "saulė", pl: "saulės", gender: "f", emoji: "☀️" },
-      { id: "debesys", sg: "debesys", pl: "debesys", gender: "m", emoji: "☁️" },
+      { id: "debesys", sg: "debesis", pl: "debesys", gender: "m", emoji: "☁️" },
       { id: "uola", sg: "uola", pl: "uolos", gender: "f", emoji: "🪨" },
-      { id: "upe", sg: "upė", pl: "upės", gender: "f", emoji: "🌊" },
+      { id: "banga", sg: "banga", pl: "bangos", gender: "f", emoji: "🌊" },
       { id: "kalnas", sg: "kalnas", pl: "kalnai", gender: "m", emoji: "⛰️" },
       { id: "miskas", sg: "miškas", pl: "miškai", gender: "m", emoji: "🌲" }
     ]
