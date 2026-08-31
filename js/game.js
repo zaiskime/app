@@ -264,6 +264,20 @@ const Game = {
       <p class="results__message">${message}</p>
       <p class="results__score">${correct} / ${total} teisingai</p>
     `;
+
+    const oxoSlot = document.createElement("div");
+    oxoSlot.id = "oxo-reward-slot";
+    resultsEl.appendChild(oxoSlot);
+
+    if (pct >= 50) {
+      OXOGame.render(oxoSlot);
+    } else {
+      const tryAgainMsg = document.createElement("p");
+      tryAgainMsg.className = "oxo-locked-message";
+      tryAgainMsg.textContent = "🔒 Gauk 50% ar daugiamiau, kad atidarytum OXO žaidimą!";
+      oxoSlot.appendChild(tryAgainMsg);
+    }
+
     this.showScreen("screen-results");
   },
 

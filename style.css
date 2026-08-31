@@ -470,6 +470,76 @@ h1.title {
   margin: 0 0 16px;
 }
 
+/* ==========================================================================
+   OXO reward mini game
+   ========================================================================== */
+.oxo-game {
+  width: 100%;
+  max-width: 320px;
+  margin: 16px auto 0;
+  padding: 20px;
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 3px solid var(--c-sun);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.oxo-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--c-cherry);
+  margin: 0 0 8px;
+}
+
+.oxo-status {
+  font-weight: 700;
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+
+.oxo-status--win { color: var(--c-forest); }
+.oxo-status--lose { color: var(--c-cherry); }
+.oxo-status--done { color: var(--c-sky); }
+
+.oxo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  width: 100%;
+  max-width: 240px;
+}
+
+.oxo-cell {
+  aspect-ratio: 1;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  border: 3px solid var(--c-cream-dark);
+  background: var(--c-cream);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.oxo-cell:hover:not(:empty) {
+  background: var(--c-cream-dark);
+}
+
+.oxo-cell--x { color: var(--c-sky); }
+.oxo-cell--o { color: var(--c-cherry); }
+
+.oxo-locked-message {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  margin-top: 8px;
+}
+
 /* Focus visibility for keyboard users */
 button:focus-visible {
   outline: 3px solid var(--c-sky);
