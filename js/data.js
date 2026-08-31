@@ -159,7 +159,7 @@ const CATEGORIES = [
   {
     id: "food",
     nameLt: "Maistas",
-    icon: "🍎",
+    icon: "🍞",
     color: "#D4915E",
     nouns: [
       { id: "duona", sg: "duona", pl: "duonos", gender: "f", emoji: "🍞" },
